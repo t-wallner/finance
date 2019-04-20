@@ -8,7 +8,7 @@ import data_importer as di
 
 style.use("ggplot")
 
-start_date = dt.datetime(2000,1,1)
+start_date = dt.datetime(2020,1,1)
 end_date = dt.datetime(2019,1,1)
 ticker_list = ["JPM"]
 di.run_importer(ticker_list, start_date, end_date)
@@ -24,4 +24,4 @@ ax1.plot(df.index, df["Adj Close"])
 ax1.plot(df.index, df["100ma"])
 ax2.plot(df.index, df["Adj Close"])
 #df[["Open","Close"]].plot()
-plt.show()
+#plt.show()
