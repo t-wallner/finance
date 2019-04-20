@@ -1,7 +1,7 @@
 import datetime as dt
 import matplotlib.pyplot as plt
 from matplotlib import style
-from matplotlib.finance import candlestick_ohlc
+from mpl_finance import candlestick_ohlc
 import matplotlib.dates as mdates
 import pandas as pd 
 import data_importer as di
@@ -10,7 +10,7 @@ style.use("ggplot")
 
 start_date = dt.datetime(2000,1,1)
 end_date = dt.datetime(2019,1,1)
-ticker_list = ["JPM","GOOGL"]
+ticker_list = ["JPM"]
 di.run_importer(ticker_list, start_date, end_date)
 
 df = di.read_csv_to_df("JPM")

@@ -1,20 +1,27 @@
 import pandas as pd 
 import pandas_datareader.data as web
+import pandas_datareader._utils as dr_utils
 import datetime as dt
 import os
 
 path_ticker_data = "ticker data"
 api_yahoo = "yahoo"
 
-def run_importer(ticker_list, start_date, end_date, api = api_yahoo):
+def run_importer(ticker_list, start_date, end_date):
 	""" Runs the importer which scrapes and saves to csv all ticker data"""
 	for ticker in ticker_list:
-		df = scrape_stock_data(ticker, start_date, end_date, api)
-		export_df_to_csv(df, ticker)
+		try:
+			df = scrape_stock_data(ticker, start_date, end_date)
+			export_df_to_csv(df, ticker)
+		except dr_utils.RemoteDataError:
+			print("Ticker is invlaid")
+		else:
+			print("Successfully scraped {0} from {1} for dates {2} to {3}"
+				.format(ticker, api_yahoo, start_date, end_date))
 
-def scrape_stock_data(ticker, start_date, end_date, api = api_yahoo):
+def scrape_stock_data(ticker, start_date, end_date):
 	""" Scrapes stock data from api and returns as dataframe. """
-	return web.DataReader(ticker,api,start_date, end_date)
+	return web.DataReader(ticker,api_yahoo,start_date,end_date)
 
 def export_df_to_csv(df, file_name):
 	""" Exports to csv to enable access to data locally. """
