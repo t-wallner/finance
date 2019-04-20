@@ -8,10 +8,10 @@ import data_importer as di
 
 style.use("ggplot")
 
-start_date = dt.datetime(2020,1,1)
-end_date = dt.datetime(2019,1,1)
-ticker_list = ["JPM"]
-di.run_importer(ticker_list, start_date, end_date)
+# start_date = dt.datetime(2020,1,1)
+# end_date = dt.datetime(2019,1,1)
+# ticker_list = ["JPM"]
+# di.run_importer(ticker_list, start_date, end_date)
 
 df = di.read_csv_to_df("JPM")
 print(df.head(5))
